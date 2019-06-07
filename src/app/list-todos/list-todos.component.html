@@ -1,0 +1,21 @@
+<table border="1px">
+  <caption>My Todos</caption>
+  <thead>
+    <tr>
+      <!-- <th>id</th> -->
+      <th>description</th>
+      <th>Status</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- for (Todo todo: todos)  todos is mentioned in component.ts-->
+    <tr *ngFor="let todo of todos">
+      <!-- <td>{{todo.id}}</td> -->
+      <td>{{todo.description}}</td>
+      <td>{{todo.done}}</td>
+      <td>{{todo.targetDate |date}}</td>
+      
+    </tr>
+  </tbody>
+</table>
