@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { toDate } from '@angular/common/src/i18n/format_date';
-
+import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 export class Todo {
   constructor(
     public id: number,
@@ -23,27 +23,9 @@ export class ListTodosComponent implements OnInit {
     new Todo(2, 'Learn to code in Angular', false, new Date()),
     new Todo(3, 'Learn to code in Java', true, new Date()),
   ];
-  // todos = [
-  //   {
-  //     id: 1,
-  //     description: 'Learn to code in React'
-  //   },
-  //   {
-  //     id: 2,
-  //     description: 'Learn to code in Angular'
-  //   },
-  //   {
-  //     id: 3,
-  //     description: 'Learn to code in Java'
-  //   }
-  // ];
-  // todo = {
-  //   id: 1,
-  //   description: 'Learn to DANCE'
-  // };
-  constructor() { }
+
+  constructor( ) {  }
 
   ngOnInit() {
   }
-
 }
