@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
       // redirect to welcome page
       this.router.navigate(['welcome', this.username]),
-      this.invalidLogin = false;
+        this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
     }
