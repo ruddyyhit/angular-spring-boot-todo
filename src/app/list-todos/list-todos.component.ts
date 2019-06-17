@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { toDate } from '@angular/common/src/i18n/format_date';
-import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
+import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 export class Todo {
   constructor(
     public id: number,
@@ -17,15 +17,46 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
+  todos: Todo[];
+  message: string;
 
-  todos = [
-    new Todo(1, 'Learn to code in React', false, new Date()),
-    new Todo(2, 'Learn to code in Angular', false, new Date()),
-    new Todo(3, 'Learn to code in Java', true, new Date()),
-  ];
+  // todos = [
+  //   new Todo(1, 'Learn to code in React', false, new Date()),
+  //   new Todo(2, 'Learn to code in Angular', false, new Date()),
+  //   new Todo(3, 'Learn to code in Java', true, new Date()),
+  // ];
 
-  constructor( ) {  }
+  constructor(
+    private todoService: TodoDataService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.refreshTodo();
+  }
+  deleteTodo(id) {
+    console.log(`value deleted ${id}`);
+    this.todoService.deleteTodoList('Ruddyy', id).subscribe(
+      response => {
+        this.message = `Deleted ${id} Successfully`;
+        this.refreshTodo();
+      }
+    );
+  }
+  refreshTodo() {
+    this.todoService.getAllData('Ruddyy').subscribe(
+      response => {
+        console.log(response);
+        this.todos = response;
+      }
+    );
+  }
+  updateTodo(id) {
+    this.todoService.getAllData('Ruddyy').subscribe(
+      response => {
+        console.log(`Update ${id}`);
+        this.router.navigate(['todos', id]);
+      }
+    );
   }
 }

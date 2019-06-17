@@ -1,12 +1,16 @@
 <h1>My Todos</h1>
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
 <div class ="container-fluid">
    <table class="table" >
   <thead>
     <tr>
       <!-- <th>id</th> -->
-      <th>description</th>
+      <th>Description</th>
+      <th>Date</th>
       <th>Status</th>
-      <th>date</th>
+      <th>Delete</th>
+      <th>Update</th>
+   
     </tr>
   </thead>
   <tbody>
@@ -14,8 +18,10 @@
     <tr *ngFor="let todo of todos">
       <!-- <td>{{todo.id}}</td> -->
       <td>{{todo.description}}</td>
-      <td>{{todo.done}}</td>
       <td>{{todo.targetDate |date}}</td>
+      <td>{{todo.done}}</td>
+      <td><button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td>
+      <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button></td>
     </tr>
   </tbody>
 </table>
