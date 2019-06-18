@@ -2,10 +2,14 @@
 <div class="container-fluid">
 <fieldset class="form-control">
   <label>Description</label>
-  <input type="text" class="form-control" name="description" required="required">
+  <input type="text" class="form-control" [(ngModel)]="todo.description" name="description" required="required">
 </fieldset>
 <fieldset class="form-control">
   <label>Target Date</label>
-  <input type="date" class="form-control" class="description" required="required">
+  <input type="date" class="form-control" 
+  [ngModel]="todo.targetDate |date:'yyyy-MM-dd'"
+  (ngModelChange)="todo.targetDate = $event"
+  class="date" required="required">
 </fieldset>
+<button class="btn btn-success" (click)="saveTodo()">Save</button>
 </div>
