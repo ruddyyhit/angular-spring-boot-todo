@@ -59,4 +59,8 @@ export class ListTodosComponent implements OnInit {
       }
     );
   }
+  addTodo() {
+    console.log('added successfully');
+    this.router.navigate(['todos', -1]);
+  }
 }
