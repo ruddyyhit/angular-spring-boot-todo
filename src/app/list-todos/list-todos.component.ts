@@ -38,6 +38,7 @@ export class ListTodosComponent implements OnInit {
     console.log(`value deleted ${id}`);
     this.todoService.deleteTodoList('Ruddyy', id).subscribe(
       response => {
+        console.log(response);
         this.message = `Deleted ${id} Successfully`;
         this.refreshTodo();
       }
