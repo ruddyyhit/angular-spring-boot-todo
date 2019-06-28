@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import { API_URL } from 'src/app/app.constant';
 export const TOKEN = 'token';
 export  const AUTHENTICATED_USER = 'authenticaterUser';
 
@@ -42,6 +42,24 @@ export class BasicAuthenticationService {
       );
     }
  // http://localhost:8080/hello-world/path-variable/hitesh
+
+ executeJWTAuthenticationService(username, password) {
+
+  return this.http.post<any>(
+    `http://localhost:8080/authenticate`,{
+      username,
+    password
+  }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
+  }
+
 
   isUserLoggedIn() {
     const user = sessionStorage.getItem(AUTHENTICATED_USER);
